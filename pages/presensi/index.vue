@@ -11,8 +11,8 @@
             
             <!-- Masuk -->
             <div class="col-md-4 mb-4">
-              <a href="#" style="text-decoration:none">
-              <div class="card border-left-primary shadow h-100 py-2" style="background-color:green;">
+              <!-- <a href="#" style="text-decoration:none"> -->
+              <div class="card border-left-primary shadow h-100 py-2" style="background-color:green;cursor:pointer"  @click="absenMasuk">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
@@ -24,13 +24,13 @@
                   </div>
                 </div>
               </div>
-              </a>
+              <!-- </a> -->
             </div>
 
             <!-- Pulang -->
             <div class="col-md-4 mb-4">
               <a href="#" style="text-decoration:none">
-              <div class="card border-left-primary shadow h-100 py-2" style="background-color:red;">
+              <div class="card border-left-primary shadow h-100 py-2" style="background-color:red;cursor:pointer" @click="absenPulang">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
@@ -64,14 +64,14 @@
           </div>
           <div class="form-group">
             <label for="">Mata Pelajaran</label>
-            <select class="form-control">
+            <select class="form-control" v-model="pelajaran">
                 <option value="">Pilih</option>
-                <option value="Basis Data">Basis Data</option>
-                <option value="Pemograman Web">Pemograman Web</option>
-                <option value="Matematika">Matematika</option>
-                <option value="Bahasa Indonesia">Bahasa Indonesia</option>
-                <option value="Kimia">Kimia</option>
-                <option value="Fisika">Fisika</option>
+                <option value="0">Basis Data</option>
+                <option value="1">Pemograman Web</option>
+                <option value="2">Matematika</option>
+                <option value="3">Bahasa Indonesia</option>
+                <option value="4">Kimia</option>
+                <option value="5">Fisika</option>
             </select>
           </div>
           <div class="row">
@@ -193,7 +193,27 @@ export default {
     data() {
       return {
         fields: ['No','jam_masuk', 'jam_pulang','mata_pelajaran'],   
+        pelajaran: null
       }
+    },
+    methods: {
+      ...mapActions('presensi',['absenMasukData','getData']),
+      absenMasuk() {
+        if(this.pelajaran == null) {
+          return
+        }
+        this.absenMasukData({
+          'id' : this.$auth.state.user.id,
+          'pelajaran' : this.pelajaran
+        }).then((res) => {
+          this.getData(this.$auth.state.user.id)
+        })
+        console.log(this.pelajaran)
+      },
+      absenPulang() {
+        console.log(this.pelajaran)
+      }
+
     }
 
 }

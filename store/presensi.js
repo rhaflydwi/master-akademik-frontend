@@ -24,11 +24,24 @@ export const actions = {
         return new Promise((resolve, reject) => {
             //KIRIM REQUEST KE API, DENGAN MENGIRMKAN PARAMETER Q DAN PAGE
             //DIMANA Q ADALAH PENCARIAN DAN PAGE ADALAH AKTIF PAGE YANG SEDANG DIAKSES
-            this.$axios.get(`presensi/${payload}`).then((response) => {
+            this.$axios.get(`presensi/${payload }`).then((response) => {
                 commit('SET_DATA', response.data.data) //JIKA BERHASIL, SET DATA BARU 
                 console.log(response.data)
                 resolve(response)
                 // console.log(response.data.data)
+            })
+        })
+    },
+    absenMasukData({ dispatch, commit}, payload) {
+        console.log(payload)
+        return new Promise((resolve, reject) => {
+            this.$axios.post('presensi/absen-masuk', payload)
+            .then((res) => {
+                console.log(res)
+                resolve(res)
+            })
+            .catch((error) => {
+                commit('SET_ERRORS', error.response.data)
             })
         })
     },

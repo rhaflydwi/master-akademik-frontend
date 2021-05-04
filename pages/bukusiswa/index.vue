@@ -84,7 +84,7 @@ export default {
     //DIMANA KITA MEMANGGIL FUNGSI GETUSERSDATA DARI STORE USER
     async asyncData({store}) {
         await Promise.all([
-            store.dispatch('bukus/getBukuData',this.$auth.$state.user.ids)
+            store.dispatch('bukus/getBukuData')
         ])
         return
     },
