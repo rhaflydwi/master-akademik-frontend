@@ -1,0 +1,30 @@
+<template>
+	<div id="wrapper">
+		<app-sidebar v-if="isAuth"></app-sidebar>
+		<div id="content-wrapper" class="d-flex flex-column">
+			<div id="content">
+				<app-header v-if="isAuth"></app-header>
+				<nuxt/>
+			</div>
+		</div>
+	</div>
+</template>
+
+<script>
+	import Header from '@/components/layouts/HeaderPortal.vue'
+	import {mapState } from 'vuex'
+
+	export default {
+		data() {
+			return {
+				// isAuth: false SEHINGGA VARIABLE INI DIDISABLE SAJA ATAU BISA DIHAPUS
+			}
+		},
+		computed: {
+			...mapState(['isAuth']), //JADI ISAUTH KITA AMBIL DARI STATE INDEX.JSS
+		},
+		components: {
+			'app-header': Header
+		}
+	}
+</script>
