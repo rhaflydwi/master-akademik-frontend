@@ -93,7 +93,7 @@ export default {
     data() {
         return {
             //FIELD UNTUK MENJADI HEADER TABLE
-            fields: ['name','address', 'email', 'phone_number', 'actions'], 
+            fields: ['name','address', 'email', 'phone_number', 'kelas','actions'], 
             items: [],
             deleteModal: false, 
             user_selected: null, //MENGHANDLE DATA USER YANG AKAN DIHAPUS

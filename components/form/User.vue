@@ -58,6 +58,17 @@
             <p class="text-danger" v-if="errors.role">{{ errors.role[0] }}</p>
         </div>
         <div class="form-group">
+            <label for="">Kelas</label>
+            <select class="form-control" :class="{'is-invalid': errors.kelas}" v-model="users.kelas">
+                <option value="">Pilih</option>
+                <option value="0">VII</option>
+                <option value="1">VIII</option>
+                <option value="2">IX</option>
+                <option value="4">Bukan Siswa</option>
+            </select>
+            <p class="text-danger" v-if="errors.kelas">{{ errors.kelas[0] }}</p>
+        </div>
+        <div class="form-group">
             <label for="">Status</label>
             <select class="form-control" :class="{'is-invalid': errors.status}" v-model="users.status">
                 <option value="">Pilih</option>
@@ -85,6 +96,7 @@ export default {
                 password: '',
                 phone_number: '',
                 role: '',
+                kelas: '',
                 status: ''
             }
         }
@@ -123,6 +135,7 @@ export default {
                 password: '',
                 phone_number: this.user.phone_number,
                 role: this.user.role,
+                kelas: this.user.kelas,
                 status: this.user.status
             }
             console.log(this.users);
