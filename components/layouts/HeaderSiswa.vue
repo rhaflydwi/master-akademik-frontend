@@ -38,6 +38,7 @@ export default {
             await this.$auth.logout() //JADI KITA TUNGGU DULU PROSES LOGOUT SELESAI
             this.SET_IS_AUTH(false) //KEMUDIAN SET ISAUTH JADI FALSE
             this.$router.push('/login') //DAN REDIRECT KE HALAMAN LOGIN
+            location.reload() //DAN REDIRECT KE HALAMAN LOGIN
         }
     }
 }
