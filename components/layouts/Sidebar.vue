@@ -59,7 +59,7 @@
             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Data Laboratorium :</h6>
-                    <nuxt-link class="collapse-item" :to="{name: 'AlatLaboratorium'}">Alat Laboratorium</nuxt-link>
+                    <nuxt-link class="collapse-item" :to="{name: 'laboratorium'}">Alat Laboratorium</nuxt-link>
                 </div>
             </div>
         </li>
