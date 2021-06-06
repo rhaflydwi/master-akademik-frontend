@@ -90,74 +90,119 @@
 </template>
 
 <script>
-import { mapActions, mapState, mapMutations } from 'vuex'
+import { mapActions, mapState, mapMutations } from "vuex";
 export default {
-    layout: 'DefaultMahasisswa',
-    //KETIKA PAGE DILOAD, MAKA FUNGSI INI AKAN DIJALANKAN SECARA OTOMATIS
-    //DIMANA KITA MEMANGGIL FUNGSI GETUSERSDATA DARI STORE USER
-    async asyncData({store}) {
-        await Promise.all([
-            store.dispatch('JadwalSiswa/getJadwalSiswaData')
-        ])
-        return
-    },
-    data() {
-        return {
-            //FIELD UNTUK MENJADI HEADER TABLE
-            fields: ['hari','jam', 'ruang', 'mata_pelajaran', 'kelas', 'guru_pengampu'], 
-            items: [],
-            // console.log(val)
-            // deleteModal: false, 
-            // buku_selected: null, //MENGHANDLE DATA USER YANG AKAN DIHAPUS
-            search: '' //MENGHANDLE VALUE PENCARIAN
-        }
-    },
-    mounted() {
-        //  console.log(this.jadwalsiswas.data);
-    },
-    created(){
+  layout: "DefaultMahasisswa",
+  //KETIKA PAGE DILOAD, MAKA FUNGSI INI AKAN DIJALANKAN SECARA OTOMATIS
+  //DIMANA KITA MEMANGGIL FUNGSI GETUSERSDATA DARI STORE USER
+  async asyncData({ store }) {
+    await Promise.all([store.dispatch("JadwalSiswa/getJadwalSiswaData")]);
+    return;
+  },
+  data() {
+    return {
+      //FIELD UNTUK MENJADI HEADER TABLE
+      fields: [
+        "hari",
+        "jam",
+        "ruang",
+        "mata_pelajaran",
+        "kelas",
+        "guru_pengampu",
+      ],
+      items: [],
+      // console.log(val)
+      // deleteModal: false,
+      // buku_selected: null, //MENGHANDLE DATA USER YANG AKAN DIHAPUS
+      search: "", //MENGHANDLE VALUE PENCARIAN
+    };
+  },
+  mounted() {
+    //  console.log(this.jadwalsiswas.data);
 
-        console.log(this.$auth.state.user.role)
+    console.log(this.$auth.state.user.role);
+    if(this.$auth.state.user.role == 0){
+     
+      this.$router.push("dashboardadmin");
+ 
+    }else if(this.$auth.state.user.role == 1) {
+      this.$router.push("/dashboardguru");
+    
+    }else if(this.$auth.state.user.role == 2) {
+      this.$router.push("/");
+    
+    }else if(this.$auth.state.user.role == 3) {
+      this.$router.push("/DashboardPetugasTataUsaha");
 
-        if(this.$auth.state.user.role == 0) {
-            this.$router.push('/dashboardadmin')
-        }
+    }else if(this.$auth.state.user.role == 4) {
+      this.$router.push("/DashboardPetugasLaboratorium");
+      
+    }else if(this.$auth.state.user.role == 5) {
+      this.$router.push("/dashboardpetugasperpustakaan");
+
+    }else if(this.$auth.state.user.role == 6) {
+      this.$router.push("/dashboardkepalasekolah");
+
+    }else{
+      this.$router.push("/");
+    }
+
+  },
+  // created() {
+  //   // console.log(this.$auth.state.user);
+  //   console.log(this.$auth.state.user.role);
+  //   // if(this.$auth.state.user.role == 1) {
+  //   //   console.log('eeeeee')
+  //   //   this.$router.push("dashboardguru");
+  //   // }
+
+
+  //   if(this.$auth.state.user.role == 0) {
+  //     this.$router.push("/dashboardadmin");
+  //   }
+  //   else if(this.$auth.state.user.role === 1) {
+  //       this.$router.push("/dashboardguru");
+  //       console.log('eeee')
+  //   }
+  //   else {
+  //       this.$router.push("/");
+  //   }
+  // },
+  computed: {
+    ...mapState("JadwalSiswa", {
+      jadwalsiswas: (state) => state.jadwalsiswas,
+      page: (state) => state.page, //AMBIL DATA PAGE YANG SEDANG AKTIF SAAT INI
+    }),
+  },
+  watch: {
+    //JIKA VALUE PAGE BERUBAH
+    page() {
+      //MAKA REQUEST DATA BARU
+      this.getJadwalSiswaData(this.search);
     },
-    computed: {
-        ...mapState('JadwalSiswa', {
-            jadwalsiswas: state => state.jadwalsiswas,
-            page: state => state.page //AMBIL DATA PAGE YANG SEDANG AKTIF SAAT INI
-        })
+  },
+  methods: {
+    ...mapActions("JadwalSiswa", ["getJadwalSiswaData"]),
+    ...mapMutations("JadwalSiswa", ["SET_PAGE"]),
+    //JIKA PADA FORM PENCARIAN DITEKAN ENTER, MAKA FUNGSI INI AKAN DIJALANKAN
+    // findBuku() {
+    //     //LAKUKAN PEMANGGILAN KE API UNTUK MENDAPATKAN DATA BERDASARKAN PENCARIAN
+    //     this.getBukuData(this.search)
+    // },
+    //JIKA PAGINATION DIKLIK, MAKA AKAN MENGESET VALUE PAGE YANG SEDANG AKTIF
+    changePage(val) {
+      this.SET_PAGE(val);
+      this.getJadwalSiswaData();
+      //  console.log(val)
     },
-    watch: {
-        //JIKA VALUE PAGE BERUBAH
-        page() {
-            //MAKA REQUEST DATA BARU
-            this.getJadwalSiswaData(this.search)
-        }  
+  },
+  watch: {
+    search: function () {
+      // this.SET_PAGE(this.buku.current_page)
+      this.getJadwalSiswaData(this.search);
     },
-    methods: {
-        ...mapActions('JadwalSiswa', ['getJadwalSiswaData']),
-        ...mapMutations('JadwalSiswa', ['SET_PAGE']),
-        //JIKA PADA FORM PENCARIAN DITEKAN ENTER, MAKA FUNGSI INI AKAN DIJALANKAN
-        // findBuku() {
-        //     //LAKUKAN PEMANGGILAN KE API UNTUK MENDAPATKAN DATA BERDASARKAN PENCARIAN
-        //     this.getBukuData(this.search)
-        // },
-        //JIKA PAGINATION DIKLIK, MAKA AKAN MENGESET VALUE PAGE YANG SEDANG AKTIF
-        changePage(val) {
-            this.SET_PAGE(val)
-            this.getJadwalSiswaData()
-            //  console.log(val)
-        }
-    },
-     watch: {
-        'search': function() {
-            // this.SET_PAGE(this.buku.current_page)
-            this.getJadwalSiswaData(this.search)
-        }
-    },
-}
+  },
+};
 </script>
 
 <style>
@@ -171,16 +216,8 @@ export default {
 }
 
 .title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
+  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   display: block;
   font-weight: 300;
   font-size: 100px;
