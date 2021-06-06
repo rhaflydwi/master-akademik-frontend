@@ -28,6 +28,7 @@ export const actions = {
             //DIMANA Q ADALAH PENCARIAN DAN PAGE ADALAH AKTIF PAGE YANG SEDANG DIAKSES
             this.$axios.get(`/usersiswa?q=${search}&page=${state.page}`).then((response) => {
                 commit('SET_USER_DATA', response.data.data) //JIKA BERHASIL, SET DATA BARU 
+                // console.log(response.data)
                 resolve()
             })
         })
