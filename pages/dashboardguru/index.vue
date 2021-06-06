@@ -22,7 +22,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 Jumlah Siswa</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">23 Orang</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{users.total}} Orang</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-users fa-2x text-gray-300"></i>
@@ -40,7 +40,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                 Jumlah Guru</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">123 Orang</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{users_guru.total}} Orang</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-users fa-2x text-gray-300"></i>
@@ -87,7 +87,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                                 Buku Perpustakaan</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{buku.total}}</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-book fa-2x text-gray-300"></i>
@@ -109,7 +109,7 @@
 
                 <div class="card-body">
                   
-                  <p><b>Status User : <span style="color:green">{{ "admin" }}</span></b></p>
+                  <p><b>Status User : <span style="color:green">{{ "Guru" }}</span></b></p>
                   <p>Anda memiliki semua hak akses pada aplikasi.</p>
                 </div>
 
@@ -121,19 +121,40 @@
         </div>
         
 </template>
-
 <script>
+import { mapActions, mapState, mapMutations } from 'vuex'
 export default {
-    layout: 'DefaultAdmin',
+    layout: 'DefaultGuru',
     async asyncData({$auth,context,redirect}) {
         if($auth.state.user.role != 0) {  
 
       redirect('/')
             }
     },
+        async asyncData({store}) {
+        await Promise.all([
+            store.dispatch('UserSiswa/getUsersData'),
+            store.dispatch('UserGuru/getUsersData'),
+            store.dispatch('bukus/getBukuData')
+
+        ])
+        return
+    },
     created() {
         console.log(this.$auth.state.user)
-    }
+    },
+    computed: {
+        ...mapState('UserSiswa', {
+            users: state => state.users,
+            page: state => state.page //AMBIL DATA PAGE YANG SEDANG AKTIF SAAT INI
+        }),
+        ...mapState('UserGuru', {
+            users_guru: state => state.users
+        }),
+        ...mapState('bukus', {
+            buku: state => state.buku
+        })
+    },
 }
 </script>
 
