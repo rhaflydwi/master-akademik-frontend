@@ -109,7 +109,7 @@
 
                 <div class="card-body">
                   
-                  <p><b>Status User : <span style="color:green">{{ }}</span></b></p>
+                  <p><b>Status User : <span style="color:green">{{ "admin" }}</span></b></p>
                   <p>Anda memiliki semua hak akses pada aplikasi.</p>
                 </div>
 
