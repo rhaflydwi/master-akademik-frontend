@@ -90,6 +90,7 @@
 </template>
 
 <script>
+
 import { mapActions, mapState, mapMutations } from "vuex";
 export default {
   layout: "DefaultMahasisswa",
@@ -111,20 +112,15 @@ export default {
         "guru_pengampu",
       ],
       items: [],
-      // console.log(val)
       // deleteModal: false,
       // buku_selected: null, //MENGHANDLE DATA USER YANG AKAN DIHAPUS
       search: "", //MENGHANDLE VALUE PENCARIAN
     };
   },
   mounted() {
-    //  console.log(this.jadwalsiswas.data);
-
-    console.log(this.$auth.state.user.role);
+  
     if(this.$auth.state.user.role == 0){
-     
-      this.$router.push("dashboardadmin");
- 
+      this.$router.push("/dashboardadmin"); 
     }else if(this.$auth.state.user.role == 1) {
       this.$router.push("/dashboardguru");
     
@@ -148,26 +144,6 @@ export default {
     }
 
   },
-  // created() {
-  //   // console.log(this.$auth.state.user);
-  //   console.log(this.$auth.state.user.role);
-  //   // if(this.$auth.state.user.role == 1) {
-  //   //   console.log('eeeeee')
-  //   //   this.$router.push("dashboardguru");
-  //   // }
-
-
-  //   if(this.$auth.state.user.role == 0) {
-  //     this.$router.push("/dashboardadmin");
-  //   }
-  //   else if(this.$auth.state.user.role === 1) {
-  //       this.$router.push("/dashboardguru");
-  //       console.log('eeee')
-  //   }
-  //   else {
-  //       this.$router.push("/");
-  //   }
-  // },
   computed: {
     ...mapState("JadwalSiswa", {
       jadwalsiswas: (state) => state.jadwalsiswas,
@@ -185,20 +161,14 @@ export default {
     ...mapActions("JadwalSiswa", ["getJadwalSiswaData"]),
     ...mapMutations("JadwalSiswa", ["SET_PAGE"]),
     //JIKA PADA FORM PENCARIAN DITEKAN ENTER, MAKA FUNGSI INI AKAN DIJALANKAN
-    // findBuku() {
-    //     //LAKUKAN PEMANGGILAN KE API UNTUK MENDAPATKAN DATA BERDASARKAN PENCARIAN
-    //     this.getBukuData(this.search)
-    // },
     //JIKA PAGINATION DIKLIK, MAKA AKAN MENGESET VALUE PAGE YANG SEDANG AKTIF
     changePage(val) {
       this.SET_PAGE(val);
       this.getJadwalSiswaData();
-      //  console.log(val)
     },
   },
   watch: {
     search: function () {
-      // this.SET_PAGE(this.buku.current_page)
       this.getJadwalSiswaData(this.search);
     },
   },

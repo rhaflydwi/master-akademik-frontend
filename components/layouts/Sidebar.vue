@@ -72,7 +72,7 @@
             <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">List Presensi :</h6>
-                    <nuxt-link class="collapse-item" :to="{name: 'PresensiGuru'}">Presensi Guru</nuxt-link>
+                    <nuxt-link class="collapse-item" :to="{name: 'DataPresensiGuru'}">Presensi Guru</nuxt-link>
                     <nuxt-link class="collapse-item" :to="{name: 'PresensiSiswa'}">Presensi Siswa</nuxt-link>
                 </div>
             </div>
@@ -89,6 +89,21 @@
                     <nuxt-link class="collapse-item" :to="{name: 'jadwalsiswavii'}"> Jadwal Siswa VII</nuxt-link>
                     <nuxt-link class="collapse-item" :to="{name: 'jadwalsiswaviii'}"> Jadwal Siswa VIII</nuxt-link>
                     <nuxt-link class="collapse-item" :to="{name: 'jadwalsiswaix'}"> Jadwal Siswa IX</nuxt-link>
+                </div>
+            </div>
+        </li>
+                        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsesix" aria-expanded="true" aria-controls="collapsesix">
+                <i class="fas fa-fw fa-file"></i>
+                <span>Data Nilai</span>
+            </a>
+            <div id="collapsesix" class="collapse" aria-labelledby="headingsix" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Data Nilai :</h6>
+                    <nuxt-link class="collapse-item" :to="{name: 'nilaisiswaall'}"> Nilai Siswa ALL</nuxt-link>
+                    <nuxt-link class="collapse-item" :to="{name: 'nilaisiswavii'}"> Nilai Siswa VII</nuxt-link>
+                    <nuxt-link class="collapse-item" :to="{name: 'nilaisiswaviii'}"> Nilai Siswa VIII</nuxt-link>
+                    <nuxt-link class="collapse-item" :to="{name: 'nilaisiswaix'}"> Nilai Siswa IX</nuxt-link>
                 </div>
             </div>
         </li>

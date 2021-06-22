@@ -138,7 +138,6 @@ export default {
                 kelas: this.user.kelas,
                 status: this.user.status
             }
-            console.log(this.users);
     }
 },
     }

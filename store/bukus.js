@@ -29,7 +29,6 @@ export const actions = {
             this.$axios.get(`/buku?q=${search}&page=${state.page}`).then((response) => {
                 commit('SET_BUKUS_DATA', response.data.data) //JIKA BERHASIL, SET DATA BARU 
                 resolve()
-                //  console.log(response.data.data)
             })
         })
     },
@@ -63,7 +62,6 @@ export const actions = {
             this.$axios.get(`/buku/${payload}`).then((response) => {
                 commit('SET_DATA', response.data.data) //SET DATA YANG DITERIMA KE DALAM STATE
                 resolve()
-                console.log(response.data.data)
             })
         })
     },

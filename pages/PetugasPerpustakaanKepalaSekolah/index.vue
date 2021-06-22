@@ -3,8 +3,8 @@
         <div class="card">
             <div class="card-header">
                 <h2 class="card-title m-0 font-weight-bold text-primary"><i class="fa fa-users" aria-hidden="true"></i>
-                    List Users Siswa
-                    <nuxt-link class="btn btn-primary float-right btn-sm" :to="{name: 'users-add'}">Add New</nuxt-link>
+                    List Users Petugas Perpustakaan
+                    <nuxt-link class="btn btn-primary float-right btn-sm" :to="{name: 'UserKepalaSekolah-add'}">Add New</nuxt-link>
                 </h2>
             </div>
             <div class="card-body row">
@@ -28,7 +28,7 @@
                       	<!-- MENAMPILKAN TOMBOL EDIT DAN HAPUS --> 
                         <template v-slot:cell(actions)="row">
                             <!-- TOMBOL EDIT AKAN DIARAHKAN KE HALAMAN BARU --> 
-                            <nuxt-link :to="{name: 'users-edit-id', params: {id: row.item.id}}" :key="'edit'+row.index" class="btn btn-warning btn-sm">Edit</nuxt-link>
+                            <nuxt-link :to="{name: 'UserKepalaSekolah-edit-id', params: {id: row.item.id}}" :key="'edit'+row.index" class="btn btn-warning btn-sm">Edit</nuxt-link>
                             <!-- TOMBOL HAPUS AKAN MEMBUKA MODAL KONFIRMASI --> 
                             <button class="btn btn-danger btn-sm" @click="openDeleteModal(row)">Delete</button>
                         </template>
@@ -81,19 +81,19 @@
 <script>
 import { mapActions, mapState, mapMutations } from 'vuex'
 export default {
-    layout: 'DefaultAdmin',
+    layout: 'DefaultKepalaSekolah',
     //KETIKA PAGE DILOAD, MAKA FUNGSI INI AKAN DIJALANKAN SECARA OTOMATIS
     //DIMANA KITA MEMANGGIL FUNGSI GETUSERSDATA DARI STORE USER
     async asyncData({store}) {
         await Promise.all([
-            store.dispatch('UserSiswa/getUsersData')
+            store.dispatch('UserPetugasperpustakaan/getUsersData')
         ])
         return
     },
     data() {
         return {
             //FIELD UNTUK MENJADI HEADER TABLE
-            fields: ['name','address', 'email', 'phone_number', 'kelas','actions'], 
+            fields: ['name','address', 'email', 'phone_number', 'actions'], 
             items: [],
             deleteModal: false, 
             user_selected: null, //MENGHANDLE DATA USER YANG AKAN DIHAPUS
@@ -101,7 +101,7 @@ export default {
         }
     },
     computed: {
-        ...mapState('UserSiswa', {
+        ...mapState('UserPetugasperpustakaan', {
             users: state => state.users,
             page: state => state.page //AMBIL DATA PAGE YANG SEDANG AKTIF SAAT INI
         })
@@ -114,8 +114,8 @@ export default {
         }  
     },
     methods: {
-        ...mapActions('UserSiswa', ['getUsersData', 'destroyUsersData']),
-        ...mapMutations('UserSiswa', ['SET_PAGE']),
+        ...mapActions('UserPetugasperpustakaan', ['getUsersData', 'destroyUsersData']),
+        ...mapMutations('UserPetugasperpustakaan', ['SET_PAGE']),
         //JIKA TOMBOL DELETE DITEKAN, MAKA FUNGSI INI AKAN DIJALANKAN
         openDeleteModal(row) {
             this.user_selected = row.item //KITA SET USER YANG AKAN DIHAPUS

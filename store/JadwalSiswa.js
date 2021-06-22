@@ -28,7 +28,6 @@ export const actions = {
             this.$axios.get(`/jadwalsiswa?q=${search}&page=${state.page}`).then((response) => {
                 commit('SET_JADWALSISWA_DATA', response.data.data) //JIKA BERHASIL, SET DATA BARU 
                 resolve()
-                //  console.log(response.data)
             })
         })
     },
@@ -40,7 +39,6 @@ export const actions = {
             this.$axios.get(`/jadwalsiswavii?q=${search}&page=${state.page}`).then((response) => {
                 commit('SET_JADWALSISWA_DATA', response.data.data) //JIKA BERHASIL, SET DATA BARU 
                 resolve()
-                //  console.log(response.data)
             })
         })
     },
@@ -52,7 +50,6 @@ export const actions = {
             this.$axios.get(`/jadwalsiswaviii?q=${search}&page=${state.page}`).then((response) => {
                 commit('SET_JADWALSISWA_DATA', response.data.data) //JIKA BERHASIL, SET DATA BARU 
                 resolve()
-                //  console.log(response.data)
             })
         })
     },
@@ -64,7 +61,6 @@ export const actions = {
             this.$axios.get(`/jadwalsiswaix?q=${search}&page=${state.page}`).then((response) => {
                 commit('SET_JADWALSISWA_DATA', response.data.data) //JIKA BERHASIL, SET DATA BARU 
                 resolve()
-                //  console.log(response.data)
             })
         })
     },
@@ -99,7 +95,6 @@ export const actions = {
             this.$axios.get(`/jadwalsiswa/${payload}`).then((response) => {
                 commit('SET_DATA', response.data.data) //SET DATA YANG DITERIMA KE DALAM STATE
                 resolve()
-                console.log(response.data.data)
             })
         })
     },

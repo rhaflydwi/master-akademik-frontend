@@ -106,7 +106,6 @@ export default {
                     password: this.auth.password
                 }
             }).then((res) => {
-                console.log(res)
                 //JIKA BERHASIL, KITA SET TRUE IS AUTH-NYA
                 this.SET_IS_AUTH(true)
                 //LALU REDIRECT KE HALAMAN UTAMA / DAHSBOARD

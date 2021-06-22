@@ -8,7 +8,7 @@
         </a>
         <hr class="sidebar-divider my-0">
         <li class="nav-item active">
-            <a class="nav-link" href="/dashboardguru">
+            <a class="nav-link" href="/DashboardPetugasTataUsaha">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span>
             </a>
@@ -25,8 +25,8 @@
             <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">List Presensi :</h6>
-                    <nuxt-link class="collapse-item" :to="{name: 'PresensiGuru'}">Presensi Guru</nuxt-link>
-                    <nuxt-link class="collapse-item" :to="{name: 'PresensiSiswa'}">Presensi Siswa</nuxt-link>
+                    <nuxt-link class="collapse-item" :to="{name: 'PresensiGuruTataUsaha'}">Presensi Guru</nuxt-link>
+                    <nuxt-link class="collapse-item" :to="{name: 'PresensiSiswaTataUsaha'}">Presensi Siswa</nuxt-link>
                 </div>
             </div>
         </li>
@@ -38,10 +38,10 @@
             <div id="collapsefive" class="collapse" aria-labelledby="headingfive" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Data Jadwal :</h6>
-                    <nuxt-link class="collapse-item" :to="{name: 'JadwalSiswaGuru'}"> Jadwal Siswa All</nuxt-link>
-                    <nuxt-link class="collapse-item" :to="{name: 'JadwalSiswaGuruVII'}"> Jadwal Siswa VII</nuxt-link>
-                    <nuxt-link class="collapse-item" :to="{name: 'JadwalSiswaGuruVIII'}"> Jadwal Siswa VIII</nuxt-link>
-                    <nuxt-link class="collapse-item" :to="{name: 'JadwalSiswaGuruIX'}"> Jadwal Siswa IX</nuxt-link>
+                    <nuxt-link class="collapse-item" :to="{name: 'JadwalSiswaTataUsaha'}"> Jadwal Siswa All</nuxt-link>
+                    <nuxt-link class="collapse-item" :to="{name: 'JadwalSiswaTataUsahaVII'}"> Jadwal Siswa VII</nuxt-link>
+                    <nuxt-link class="collapse-item" :to="{name: 'JadwalSiswaTataUsahaVIII'}"> Jadwal Siswa VIII</nuxt-link>
+                    <nuxt-link class="collapse-item" :to="{name: 'JadwalSiswaTataUsahaIX'}"> Jadwal Siswa IX</nuxt-link>
                 </div>
             </div>
         </li>

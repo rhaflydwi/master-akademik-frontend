@@ -85,9 +85,9 @@ export default {
         submit() {
             if (this.$route.name == 'buku-edit-id') {
                 let data = Object.assign({id: this.$route.params.id}, this.buku)
-                this.updateBukusData(data).then((this.$router.push({name: 'buku'})))
+                this.updateBukusData(data).then((this.$router.push({name: 'bukusiswa'})))
             } else {
-                this.storeBukuData(this.buku).then(() => this.$router.push({name: 'buku'}))
+                this.storeBukuData(this.buku).then(() => this.$router.push({name: 'bukusiswa'}))
                     }
                 }
             }

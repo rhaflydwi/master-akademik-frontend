@@ -33,37 +33,9 @@
           </div>
           <!-- </a> -->
         </div>
-
-        <!-- Pulang -->
-        <div class="col-md-4 mb-4">
-          <a href="#" style="text-decoration: none">
-            <div
-              class="card border-left-primary shadow h-100 py-2"
-              style="background-color: red; cursor: pointer"
-              @click="absenPulang"
-            >
-              <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                  <div class="col mr-2">
-                    <div
-                      class="h4 mb-0 font-weight-bold text-light-800"
-                      style="color: white; padding-top: 10px"
-                    >
-                      PULANG
-                    </div>
-                  </div>
-                  <div class="col-auto">
-                    <i class="fas fa-sign-out-alt fa-2x text-gray-300"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
-
         <!-- Jam -->
         <div class="col-md-4 mb-4">
-          <div class="card border-left-info shadow h-100 py-2">
+          <div class="card border-left-info shadow h-100 py-2" style="width: 48rem;">
             <div class="card-body">
               <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
@@ -110,8 +82,7 @@
                 <b>Status User : <span style="color: green">Siswa</span></b>
               </p>
               <p>
-                Silahkan klik tombol <b style="color: green">Masuk</b> atau
-                <b style="color: red">Pulang</b> di atas untuk melakukan
+                Silahkan klik tombol <b style="color: green">Masuk</b>di atas untuk melakukan
                 presensi hari ini. Terima kasih.
               </p>
             </div>
@@ -158,11 +129,8 @@
 import { mapActions, mapState, mapMutations } from "vuex";
 export default {
   async asyncData({ $auth, store }) {
-    console.log($auth.state.user.id);
     await Promise.all([
       store.dispatch("presensi/getData", $auth.state.user.id).then((res) => {
-        console.log("ress");
-        console.log(res);
       }),
     ]);
     return;
@@ -174,12 +142,9 @@ export default {
   created() {
     this.startTime()
   },
-  mounted() {
-    console.log(this.data);
-    },
   data() {
     return {
-      fields: ["No", "jam_masuk", "jam_pulang", "mata_pelajaran"],
+      fields: ["jam_masuk", "mata_pelajaran"],
       pelajaran: null,
       waktu: ''
     };
@@ -196,10 +161,8 @@ export default {
       }).then((res) => {
         this.getData(this.$auth.state.user.id);
       });
-      console.log(this.pelajaran);
     },
     absenPulang() {
-      console.log(this.pelajaran);
     },
     startTime() {
       var today = new Date();
@@ -208,7 +171,6 @@ export default {
       var s = today.getSeconds();
       m = this.checkTime(m);
       s = this.checkTime(s);
-      // console.log(m);
       this.waktu = h + ":" + m + ":" + s;
       var t = setTimeout(this.startTime, 500);
     },

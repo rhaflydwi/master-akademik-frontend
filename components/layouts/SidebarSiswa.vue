@@ -40,6 +40,21 @@
                 </div>
             </div>
         </li>
+         <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsethree" aria-expanded="true" aria-controls="collapsethree">
+                <i class="fas fa-fw fa-file"></i>
+                <span>Data Nilai</span>
+            </a>
+            <div id="collapsethree" class="collapse" aria-labelledby="headingthree" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Data Nilai :</h6>
+                    <nuxt-link class="collapse-item" :to="{name: 'siswanilaivii'}"> Kelas VII</nuxt-link>
+                    <nuxt-link class="collapse-item" :to="{name: 'siswanilaiviii'}">Kelas VIII</nuxt-link>
+                    <nuxt-link class="collapse-item" :to="{name: 'siswanilaiix'}">Kelas IX</nuxt-link>
+                    
+                </div>
+            </div>
+        </li>
     </ul>
 </template>
 

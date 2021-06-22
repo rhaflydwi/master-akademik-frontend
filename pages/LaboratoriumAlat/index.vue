@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-header">
-                <h2 class="card-title m-0 font-weight-bold text-primary"><i class="fa fa-book" aria-hidden="true"></i>
+                <h2 class="card-title m-0 font-weight-bold text-primary"><i class="fa fa-flask" aria-hidden="true"></i>
                     List Alat Laboratorium
                     <nuxt-link class="btn btn-primary float-right btn-sm" :to="{name: 'LaboratoriumAlat-add'}">Add New</nuxt-link>
                 </h2>

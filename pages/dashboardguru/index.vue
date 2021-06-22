@@ -52,27 +52,16 @@
 
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
+                            <div class="card border-left-danger shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Kehadiran
-                                            </div>
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="progress progress-sm mr-2">
-                                                        <div class="progress-bar bg-info" role="progressbar"
-                                                            style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                                                Kehadiran</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{presensis.total}} Orang</div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-clock fa-2x text-gray-300"></i>
+                                            <i class="fas fa-users fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -114,6 +103,7 @@
                 </div>
 
               </div>
+              
             </div>
                     </div>
                 </div>
@@ -121,12 +111,13 @@
         </div>
         
 </template>
+
 <script>
 import { mapActions, mapState, mapMutations } from 'vuex'
 export default {
     layout: 'DefaultGuru',
     async asyncData({$auth,context,redirect}) {
-        if($auth.state.user.role != 0) {  
+        if($auth.state.user.role != 1) {  
 
       redirect('/')
             }
@@ -135,13 +126,11 @@ export default {
         await Promise.all([
             store.dispatch('UserSiswa/getUsersData'),
             store.dispatch('UserGuru/getUsersData'),
+            store.dispatch('presensi/getPresensiData'),
             store.dispatch('bukus/getBukuData')
 
         ])
         return
-    },
-    created() {
-        console.log(this.$auth.state.user)
     },
     computed: {
         ...mapState('UserSiswa', {
@@ -153,6 +142,9 @@ export default {
         }),
         ...mapState('bukus', {
             buku: state => state.buku
+        }),
+        ...mapState('presensi', {
+            presensis: state => state.presensis
         })
     },
 }

@@ -29,7 +29,6 @@ export const actions = {
             this.$axios.get(`/laboratorium?q=${search}&page=${state.page}`).then((response) => {
                 commit('SET_LABORATORIUMS_DATA', response.data.data) //JIKA BERHASIL, SET DATA BARU 
                 resolve()
-                // console.log(response.data.data)
             })
         })
     },
@@ -63,7 +62,6 @@ export const actions = {
             this.$axios.get(`/laboratorium/${payload}`).then((response) => {
                 commit('SET_DATA', response.data.data) //SET DATA YANG DITERIMA KE DALAM STATE
                 resolve()
-                console.log(response.data.data)
             })
         })
     },

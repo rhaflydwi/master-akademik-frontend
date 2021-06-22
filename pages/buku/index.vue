@@ -97,9 +97,6 @@ export default {
             search: '' //MENGHANDLE VALUE PENCARIAN
         }
     },
-    mounted() {
-        // console.log(this.buku.per_page);
-    },
     computed: {
         ...mapState('bukus', {
             buku: state => state.buku,
@@ -132,20 +129,14 @@ export default {
     })
         },
         //JIKA PADA FORM PENCARIAN DITEKAN ENTER, MAKA FUNGSI INI AKAN DIJALANKAN
-        // findBuku() {
-        //     //LAKUKAN PEMANGGILAN KE API UNTUK MENDAPATKAN DATA BERDASARKAN PENCARIAN
-        //     this.getBukuData(this.search)
-        // },
         //JIKA PAGINATION DIKLIK, MAKA AKAN MENGESET VALUE PAGE YANG SEDANG AKTIF
         changePage(val) {
             this.SET_PAGE(val)
             this.getBukusData()
-            // console.log(val)
         }
     },
      watch: {
         'search': function() {
-            // this.SET_PAGE(this.buku.current_page)
             this.getBukuData(this.search)
         }
     },
