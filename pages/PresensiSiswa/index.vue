@@ -34,10 +34,6 @@
                 <b-table striped hover :items="presensis.data" :fields="fields" show-empty>
                   <template v-slot:cell(name)="row">
                     <p>{{ row.item.user_data.name }}</p>
-                            <!-- TOMBOL EDIT AKAN DIARAHKAN KE HALAMAN BARU --> 
-                            <!-- <nuxt-link :to="{name: 'jadwalsiswa-edit-id', params: {id: row.item.id}}" :key="'edit'+row.index" class="btn btn-warning btn-sm" style="margin:5px">Edit</nuxt-link> -->
-                            <!-- TOMBOL HAPUS AKAN MEMBUKA MODAL KONFIRMASI --> 
-                            <!-- <button class="btn btn-danger btn-sm" style="margin:5px" @click="openDeleteModal(row)">Delete</button> -->
                     </template>
             <!-- MENAMPILKAN TOMBOL EDIT DAN HAPUS -->
           </b-table>

@@ -106,15 +106,18 @@
             show-empty
             responsive
           >
-            <template v-slot:cell(jam_masuk)="row">
+            <!-- <template v-slot:cell(jam_masuk)="row">
               <p>{{ row.item.format_jam_masuk }}</p>
-            </template>
+            </template> -->
             <template v-slot:cell(jam_pulang)="row">
               <p>{{ row.item.format_jam_pulang }}</p>
             </template>
             <template v-slot:cell(mata_pelajaran)="row">
               <p>{{ row.item.mata_pelajaran_teks }}</p>
             </template>
+                              <template v-slot:cell(name)="row">
+                    <p>{{ row.item.user_data.name }}</p>
+                    </template>
             <!-- MENAMPILKAN TOMBOL EDIT DAN HAPUS -->
           </b-table>
         </div>
@@ -144,7 +147,7 @@ export default {
   },
   data() {
     return {
-      fields: ["jam_masuk", "mata_pelajaran"],
+            fields: ['name', 'jam_masuk', 'kelas_teks', 'mata_pelajaran_teks'], 
       pelajaran: null,
       waktu: ''
     };

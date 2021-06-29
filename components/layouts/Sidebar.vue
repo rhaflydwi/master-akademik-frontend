@@ -100,7 +100,6 @@
             <div id="collapsesix" class="collapse" aria-labelledby="headingsix" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Data Nilai :</h6>
-                    <nuxt-link class="collapse-item" :to="{name: 'nilaisiswaall'}"> Nilai Siswa ALL</nuxt-link>
                     <nuxt-link class="collapse-item" :to="{name: 'nilaisiswavii'}"> Nilai Siswa VII</nuxt-link>
                     <nuxt-link class="collapse-item" :to="{name: 'nilaisiswaviii'}"> Nilai Siswa VIII</nuxt-link>
                     <nuxt-link class="collapse-item" :to="{name: 'nilaisiswaix'}"> Nilai Siswa IX</nuxt-link>
